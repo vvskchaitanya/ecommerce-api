@@ -14,12 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.vvsk.app.ecommerce.dto.Request;
-import com.vvsk.app.ecommerce.dto.Response;
-
 @Entity
 @Table(name = "USERS")
-public class User implements Request, Response {
+public class User {
 	@Id
 	@Column(name = "NAME")
 	private String name;

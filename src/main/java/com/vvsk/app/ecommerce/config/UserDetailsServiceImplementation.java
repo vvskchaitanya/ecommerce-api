@@ -17,6 +17,7 @@ import com.vvsk.app.ecommerce.entity.Address;
 import com.vvsk.app.ecommerce.entity.Order;
 import com.vvsk.app.ecommerce.entity.Phone;
 import com.vvsk.app.ecommerce.entity.Product;
+import com.vvsk.app.ecommerce.entity.Status;
 import com.vvsk.app.ecommerce.entity.User;
 import com.vvsk.app.ecommerce.repository.UserRepository;
 
@@ -39,7 +40,9 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 		phone.setUser(user);
 		Order order = new Order();
 		order.setBuyer(user);
-		order.setStatus("DELIVERED");
+		Status status = new Status();
+		status.setAction("DELIVERED");
+		order.setStatus(Arrays.asList(status));
 		Product product = new Product();
 		product.setBrand("Prodcut Brand");
 		product.setSeller(user);

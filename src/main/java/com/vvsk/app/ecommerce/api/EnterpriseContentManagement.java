@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vvsk.app.ecommerce.dto.Response;
+import com.vvsk.app.ecommerce.dto.response.Response;
+import com.vvsk.app.ecommerce.dto.response.contentmanagement.UploadContentResponse;
 import com.vvsk.app.ecommerce.entity.Content;
 import com.vvsk.app.ecommerce.repository.ContentRepository;
 
@@ -36,7 +37,7 @@ public class EnterpriseContentManagement {
 		if (file != null && file.getBytes().length > 0) {
 			Content content = new Content(file.getName(), file.getContentType(), file.getBytes());
 			content = repository.save(content);
-			return new ResponseEntity<Response>(content, HttpStatus.OK);
+			return new ResponseEntity<Response>(new UploadContentResponse(content), HttpStatus.OK);
 		} else
 			return new ResponseEntity<Response>(HttpStatus.BAD_REQUEST);
 	}

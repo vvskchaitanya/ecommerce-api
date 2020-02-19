@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,12 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vvsk.app.ecommerce.dto.Request;
-import com.vvsk.app.ecommerce.dto.Response;
 import com.vvsk.app.ecommerce.entity.Product;
 import com.vvsk.app.ecommerce.repository.ProductRepository;
-import com.vvsk.app.ecommerce.validation.RequestValidator;
-import com.vvsk.app.ecommerce.validation.ValidationException;
 
 @RestController
 @RequestMapping("/manage")
@@ -30,11 +25,8 @@ public class ProductManagement {
 	@Autowired
 	ProductRepository repository;
 
-	@Autowired
-	RequestValidator validator;
-
 	@PutMapping("/product")
-	public ResponseEntity<Product> create(@RequestBody Product newProduct) throws ValidationException {
+	public ResponseEntity<Product> create(@RequestBody Product newProduct) {
 
 		Optional<Product> product = repository.findByName(newProduct.getName());
 		if (product.isPresent())
@@ -78,14 +70,9 @@ public class ProductManagement {
 	}
 
 	@PostMapping("/products")
-	public ResponseEntity<List<Product>> list(@RequestBody Request request) {
+	public ResponseEntity<List<Product>> list() {
 		List<Product> products = repository.findAll();
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-	}
-
-	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<Response> handleValidationExceptions(ValidationException ve) {
-		return new ResponseEntity<Response>(ve.getValidation(), HttpStatus.BAD_REQUEST);
 	}
 
 }

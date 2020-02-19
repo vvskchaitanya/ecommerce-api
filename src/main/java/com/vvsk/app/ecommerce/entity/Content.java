@@ -8,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import com.vvsk.app.ecommerce.dto.Response;
-
 @Entity
 @Table(name = "CONTENT")
-public class Content implements Response {
+public class Content {
 
 	@Id
 	@Column(name = "ID")

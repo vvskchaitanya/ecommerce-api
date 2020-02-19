@@ -10,11 +10,11 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vvsk.app</groupId>
-	<artifactId>ecommerce</artifactId>
+	<artifactId>ecommerce-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>ecommerce</name>
-	<description>E-Commerce Application by vvsk</description>
+	<name>ecommerce-api</name>
+	<description>E-Commerce API by VVSK</description>
 
 	<properties>
 		<java.version>1.8</java.version>

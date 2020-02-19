@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vvsk.app.ecommerce.dto.Request;
-import com.vvsk.app.ecommerce.dto.Response;
+import com.vvsk.app.ecommerce.dto.request.Request;
+import com.vvsk.app.ecommerce.dto.response.Response;
 
 @RestController
 @RequestMapping("/manage")

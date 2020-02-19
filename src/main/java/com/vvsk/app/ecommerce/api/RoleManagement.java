@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vvsk.app.ecommerce.dto.Response;
 import com.vvsk.app.ecommerce.entity.Role;
 import com.vvsk.app.ecommerce.repository.RoleRepository;
-import com.vvsk.app.ecommerce.validation.RequestValidator;
-import com.vvsk.app.ecommerce.validation.ValidationException;
 
 @RestController
 @RequestMapping("/manage")
@@ -29,11 +25,8 @@ public class RoleManagement {
 	@Autowired
 	RoleRepository repository;
 
-	@Autowired
-	RequestValidator validator;
-
 	@PutMapping("/role")
-	public ResponseEntity<Role> create(@RequestBody Role newRole) throws ValidationException {
+	public ResponseEntity<Role> create(@RequestBody Role newRole) {
 
 		Optional<Role> role = repository.findById(newRole.getName());
 		if (role.isPresent())
@@ -79,11 +72,6 @@ public class RoleManagement {
 		} else {
 			return new ResponseEntity<Role>(role.get(), HttpStatus.NOT_FOUND);
 		}
-	}
-
-	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<Response> handleValidationExceptions(ValidationException ve) {
-		return new ResponseEntity<Response>(ve.getValidation(), HttpStatus.BAD_REQUEST);
 	}
 
 }
