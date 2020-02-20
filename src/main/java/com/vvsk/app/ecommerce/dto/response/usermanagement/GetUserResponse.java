@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.vvsk.app.ecommerce.dto.response.Response;
 import com.vvsk.app.ecommerce.entity.User;
-import com.vvsk.app.ecommerce.util.Constants;
 
-public class AddUserResponse extends Response {
+public class GetUserResponse extends Response {
 
 	String name;
 	List<String> roles;
@@ -14,8 +13,8 @@ public class AddUserResponse extends Response {
 	String lastName;
 	boolean active;
 
-	public AddUserResponse(User user) {
-		super(Constants.MESSAGE_SUCCESS);
+	public GetUserResponse(User user) {
+		super("Success");
 		this.name = user.getName();
 		this.roles = user.getRole();
 		this.firstName = user.getFirstName();

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vvsk.app.ecommerce.dto.request.usermanagement.AddUserRequest;
 import com.vvsk.app.ecommerce.dto.response.Response;
 import com.vvsk.app.ecommerce.dto.response.usermanagement.AddUserResponse;
+import com.vvsk.app.ecommerce.dto.response.usermanagement.GetUserResponse;
 import com.vvsk.app.ecommerce.entity.User;
 import com.vvsk.app.ecommerce.repository.UserRepository;
 
@@ -46,12 +47,12 @@ public class UserManagement {
 	}
 
 	@GetMapping("/get")
-	public ResponseEntity<User> getUser(@RequestParam(required = true) String name) {
+	public ResponseEntity<Response> getUser(@RequestParam(required = true) String name) {
 		Optional<User> user = repository.findById(name);
 		if (user.isPresent())
-			return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+			return new ResponseEntity<Response>(new GetUserResponse(user.get()), HttpStatus.OK);
 		else {
-			return new ResponseEntity<User>(user.get(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response>(new Response("Not Found"), HttpStatus.NOT_FOUND);
 		}
 	}
 

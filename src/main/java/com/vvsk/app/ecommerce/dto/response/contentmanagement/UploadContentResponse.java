@@ -4,9 +4,9 @@ import com.vvsk.app.ecommerce.dto.response.Response;
 import com.vvsk.app.ecommerce.entity.Content;
 
 public class UploadContentResponse extends Response {
-	private long id;
-	private String name;
-	private String type;
+	long id;
+	String name;
+	String type;
 
 	public UploadContentResponse(Content content) {
 		super("Success");

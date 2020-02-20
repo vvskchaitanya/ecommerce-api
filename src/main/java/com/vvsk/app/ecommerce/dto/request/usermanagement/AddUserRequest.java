@@ -8,12 +8,12 @@ import com.vvsk.app.ecommerce.entity.User;
 public class AddUserRequest extends Request {
 
 	@NotEmpty(message = "Name is mandatory")
-	private String name;
+	String name;
 	@NotEmpty(message = "Password is required")
-	private String password;
+	String password;
 	@NotEmpty(message = "FirstName is required")
-	private String firstName;
-	private String lastName;
+	String firstName;
+	String lastName;
 
 	public AddUserRequest(String name, String password, String firstName, String lastName) {
 		super();
